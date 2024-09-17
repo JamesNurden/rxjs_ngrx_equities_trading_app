@@ -1,4 +1,5 @@
 // components/trading-dashboard.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,9 +12,13 @@ import { TradingState } from '../state/trading.state';
 })
 export class TradingDashboardComponent implements OnInit {
   stockPrices$: Observable<{ [symbol: string]: number }>;
+  loading$: Observable<boolean>;
+  error$: Observable<string | null>;
 
   constructor(private store: Store<{ trading: TradingState }>) {
     this.stockPrices$ = this.store.select(state => state.trading.stockPrices);
+    this.loading$ = this.store.select(state => state.trading.loading);
+    this.error$ = this.store.select(state => state.trading.error);
   }
 
   ngOnInit(): void {
