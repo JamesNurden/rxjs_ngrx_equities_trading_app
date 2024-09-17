@@ -1,6 +1,21 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 
+// executeTrade$.js
+const { of, interval } = require('rxjs');
+const { map } = require('rxjs/operators');
+
+function executeTrade() {
+  return interval(1000).pipe(map(() => ({
+    symbol: 'AAPL',
+    shares: Math.floor(Math.random() * 100),
+    price: 150 + Math.random() * 10
+  })));
+}
+
+module.exports = { executeTrade };
+
+
 // Button to trigger trade execution
 const tradeButton = document.getElementById('trade-btn');
 

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadStockPrices } from '../state/trading.actions';
-import { TradingState } from '../state/trading.state';
+import { TradingState } from './trading.state';
 
 @Component({
   selector: 'app-trading-dashboard',

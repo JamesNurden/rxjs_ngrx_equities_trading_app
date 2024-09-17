@@ -17,3 +17,20 @@ function updateUI(stock: any) {
   // Code to update the trading dashboard with the latest stock price
   console.log(`Stock: ${stock.symbol}, Price: ${stock.price}, Volume: ${stock.volume}`);
 }
+
+// marketData$.js
+const { interval } = require('rxjs');
+const { map } = require('rxjs/operators');
+
+// Simulate a market data stream that emits stock prices every second
+function marketData$() {
+  return interval(1000).pipe(
+    map(() => ({
+      AAPL: 150 + Math.random() * 10,
+      GOOGL: 2800 + Math.random() * 50,
+      MSFT: 300 + Math.random() * 5
+    }))
+  );
+}
+
+module.exports = { marketData$ };
